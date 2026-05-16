@@ -2,6 +2,7 @@ package br.com.leaf.class3.address.controller;
 
 import br.com.leaf.class3.address.dto.AddressRequest;
 import br.com.leaf.class3.address.dto.AddressResponse;
+import br.com.leaf.class3.address.dto.AddressZipCodeResponse;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import org.springframework.core.ParameterizedTypeReference;
@@ -58,4 +59,19 @@ public class AddressController {
                 .body(new ParameterizedTypeReference<List<AddressResponse>>() {
                 });
     }
+
+    @GetMapping("/search/zipCode")
+    public AddressZipCodeResponse searchByZipCode(
+            @RequestParam
+            @NotBlank(message = "CEP é obrigatório")
+            @Size(min = 8, max = 8, message = "CEP deve possuir 8 caracteres")
+            String cep) {
+        return restClient.get()
+                .uri("https://viacep.com.br/ws/{cep}/json/", cep)
+                .retrieve()
+                .body(AddressZipCodeResponse.class);
+
+    }
+
+
 }
