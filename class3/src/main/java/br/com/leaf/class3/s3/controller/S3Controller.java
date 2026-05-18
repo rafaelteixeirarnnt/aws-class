@@ -18,13 +18,10 @@ public class S3Controller {
         this.service = service;
     }
 
-    @PostMapping("/upload")
+    @PostMapping(value = "/upload", consumes = "multipart/form-data")
     public ResponseEntity<String> upload(
-            @RequestParam("file") MultipartFile file
-    ) throws IOException {
-
+            @RequestParam("file") MultipartFile file) throws IOException {
         service.upload(file);
-
         return ResponseEntity.ok("Upload realizado com sucesso");
     }
 
