@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: class3
+
+aws:
+  s3:
+    bucket:
+    folder-root:
