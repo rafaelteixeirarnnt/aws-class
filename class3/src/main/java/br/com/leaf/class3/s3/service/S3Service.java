@@ -1,4 +1,4 @@
-package br.com.leaf.class4.s3.service;
+package br.com.leaf.class3.s3.service;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -14,22 +14,24 @@ public class S3Service {
 
     private final S3Client s3Client;
 
-    @Value("${aws.s3.bucket}")
-    private final String BUCKET;
+    private final String bucket;
 
-    @Value("${aws.s3.folder-root}")
-    private final String FOLDER_ROOT;
+    private final String folderRoot;
 
-    public S3Service(S3Client s3Client, String bucket, String folderRoot) {
+    public S3Service(S3Client s3Client,
+            @Value("${aws.s3.bucket}") String bucket,
+            @Value("${aws.s3.folder-root}") String folderRoot) {
+
         this.s3Client = s3Client;
-        this.BUCKET = bucket;
-        this.FOLDER_ROOT = folderRoot;
+        this.bucket = bucket;
+        this.folderRoot = folderRoot;
+
     }
 
     public void upload(MultipartFile file) throws IOException {
         PutObjectRequest request = PutObjectRequest.builder()
-                .bucket(BUCKET)
-                .key(FOLDER_ROOT + "/" + file.getOriginalFilename())
+                .bucket(bucket)
+                .key(folderRoot + "/" + file.getOriginalFilename())
                 .build();
 
         s3Client.putObject(
@@ -42,8 +44,8 @@ public class S3Service {
     public List<String> listFiles() {
 
         ListObjectsV2Request request = ListObjectsV2Request.builder()
-                .bucket(BUCKET)
-                .prefix(FOLDER_ROOT + "/")
+                .bucket(bucket)
+                .prefix(folderRoot + "/")
                 .build();
 
         ListObjectsV2Response response = s3Client.listObjectsV2(request);

@@ -1,4 +1,4 @@
-package br.com.leaf.class4.s3.config;
+package br.com.leaf.class3.s3.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

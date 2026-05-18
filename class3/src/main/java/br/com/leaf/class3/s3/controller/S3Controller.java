@@ -1,6 +1,6 @@
-package br.com.leaf.class4.s3.controller;
+package br.com.leaf.class3.s3.controller;
 
-import br.com.leaf.class4.s3.service.S3Service;
+import br.com.leaf.class3.s3.service.S3Service;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;

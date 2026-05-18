@@ -1,13 +1,11 @@
 package br.com.leaf.class3.address.controller;
 
-import br.com.leaf.class3.address.dto.AddressRequest;
 import br.com.leaf.class3.address.dto.AddressResponse;
 import br.com.leaf.class3.address.dto.AddressZipCodeResponse;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
