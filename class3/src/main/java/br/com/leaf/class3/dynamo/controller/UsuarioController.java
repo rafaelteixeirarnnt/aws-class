@@ -1,6 +1,7 @@
 package br.com.leaf.class3.dynamo.controller;
 
 import br.com.leaf.class3.dynamo.model.UsuarioRequest;
+import br.com.leaf.class3.dynamo.model.UsuarioResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -44,7 +45,8 @@ public class UsuarioController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Map<String, AttributeValue>> buscar(@PathVariable String id) {
+
+    public ResponseEntity<UsuarioResponse> buscar(@PathVariable String id) {
 
         Map<String, AttributeValue> key = new HashMap<>();
         key.put("id", AttributeValue.builder().s(id).build());
@@ -60,6 +62,12 @@ public class UsuarioController {
             return ResponseEntity.notFound().build();
         }
 
-        return ResponseEntity.ok(item);
+        UsuarioResponse response = new UsuarioResponse(
+                item.get("id").s(),
+                item.get("nome").s()
+        );
+
+        return ResponseEntity.ok(response);
+
     }
 }
