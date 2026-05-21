@@ -6,3 +6,5 @@ aws:
   s3:
     bucket:
     folder-root:
+  dynamodb:
+    endpoint: https://dynamodb.sa-east-1.amazonaws.com
